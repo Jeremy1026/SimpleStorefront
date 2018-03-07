@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use NoInc\SimpleStorefrontBundle\Entity\Ingredient;
 use NoInc\SimpleStorefrontBundle\Entity\Product;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use NoInc\SimpleStorefrontBundle\Entity\RecipeIngredient;
 
 /**
  * @Security("has_role('ROLE_ADMIN')")
@@ -40,12 +41,38 @@ class AdminController extends Controller
      */
     public function postMakeRecipeAction(Recipe $recipe)
     {
-
-        $product = new Product();
-        $product->setCreatedAt(time());
-        $product->setRecipe($recipe);
-        $this->getDoctrine()->getEntityManager()->persist($product);
-        $this->getDoctrine()->getEntityManager()->flush();
+        $haveEnough = true;
+        $requiredIngredients = $recipe->getRecipeIngredients();
+        //Check stock levels
+        foreach ($requiredIngredients as $ingredient) 
+        {
+            $currentIngredient = $this->getDoctrine()->getRepository('NoInc\SimpleStorefrontBundle\Entity\Ingredient')->find($ingredient->getIngredientId());
+            $available = $currentIngredient->getStock();
+            $required = $ingredient->getQuantity();
+            if ($available < $required) 
+            {
+                return $this->redirectToRoute('admin_home'); //Can't make it, might as well move on
+            }
+        }
+        if ($haveEnough) 
+        {   
+            //Update stock levels
+            foreach ($requiredIngredients as $ingredient) 
+            {
+                $currentIngredient = $this->getDoctrine()->getRepository('NoInc\SimpleStorefrontBundle\Entity\Ingredient')->find($ingredient->getIngredientId());
+                $available = $currentIngredient->getStock();
+                $required = $ingredient->getQuantity();
+                $currentIngredient->setStock($available - $required);
+                $this->getDoctrine()->getEntityManager()->flush();
+            }
+            
+            $product = new Product();
+            $product->setCreatedAt(time());
+            $product->setRecipe($recipe);
+            $this->getDoctrine()->getEntityManager()->persist($product);
+            $this->getDoctrine()->getEntityManager()->flush();
+        }
+        
         
         return $this->redirectToRoute('admin_home');
     }
