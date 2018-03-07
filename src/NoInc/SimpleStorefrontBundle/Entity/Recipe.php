@@ -55,6 +55,14 @@ class Recipe
      */
     protected $recipeIngredients;
 
+    /**
+     * Sample image of recipe product
+     *
+     * @ORM\Column(type="string", length=255, nullable=false)
+     */
+    protected $image;
+
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
@@ -205,5 +213,28 @@ class Recipe
     public function __sleep()
     {
         return array('id', 'name', 'price');
+    }
+
+        /**
+     * Set the value of image.
+     *
+     * @param string $image
+     * @return \NoInc\SimpleStorefrontBundle\Entity\Recipe
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of image.
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 }

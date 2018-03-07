@@ -35,6 +35,7 @@ class LoadLemonadeData extends AbstractFixture implements OrderedFixtureInterfac
         $recipe = new Recipe();
         $recipe->setName($recipeData["name"]);
         $recipe->setPrice($recipeData["price"]);
+        $recipe->setImage($recipeData["image"]);
         $manager->persist($recipe);
         $manager->flush();
         
@@ -76,6 +77,7 @@ class LoadLemonadeData extends AbstractFixture implements OrderedFixtureInterfac
         return [
             "name" => "Lemonade",
             "price" => 1.00,
+            "image" => "lemonade.jpg",
             "ingredients" => [
                 [
                     "name" => "Lemon",

@@ -35,6 +35,7 @@ class LoadSweetTeaData extends AbstractFixture implements OrderedFixtureInterfac
         $recipe = new Recipe();
         $recipe->setName($recipeData["name"]);
         $recipe->setPrice($recipeData["price"]);
+        $recipe->setImage($recipeData["image"]);
         $manager->persist($recipe);
         $manager->flush();
         
@@ -76,6 +77,7 @@ class LoadSweetTeaData extends AbstractFixture implements OrderedFixtureInterfac
         return [
             "name" => "Sweet Tea",
             "price" => 2,
+            "image" => "sweet-tea.jpg",
             "ingredients" => [
                 [
                     "name" => "Tea Bags",
