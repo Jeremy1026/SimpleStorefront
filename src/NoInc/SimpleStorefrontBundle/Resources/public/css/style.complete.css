@@ -14014,3 +14014,31 @@ div.dark_rounded #pp_full_res .pp_inline,div.dark_square #pp_full_res .pp_inline
         -webkit-animation: sharp 2s ease infinite;
         animation: sharp 2s ease infinite;
     }
+
+
+    /*  Added CSS
+/*----------------------------------------------------*/
+
+    /* Small Devices, Tablets */
+    @media only screen and (min-width : 768px) {
+
+    }
+
+    /* Medium Devices, Desktops */
+    @media only screen and (min-width : 992px) {
+
+    }
+
+    /* Large Devices, Wide Screens */
+    @media only screen and (min-width : 1200px) {
+
+    }
+
+.header {
+    width: 100%;
+}
+
+.header .header-links {
+    max-width: 200px;
+    margin: 0 auto;
+}

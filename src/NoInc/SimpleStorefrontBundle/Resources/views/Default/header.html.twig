@@ -1,0 +1,13 @@
+<div class="header">
+{% if not is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+	<div class="header-links">
+		<a href="login"><button type="submit" class="btn btn-embossed btn-primary">Login</button></a>
+	</div>
+{% endif %}
+{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+	<div class="header-links">
+		<a href="logout"><button type="submit" class="btn btn-embossed btn-primary">Logout</button></a>
+		<a href="admin"><button type="submit" class="btn btn-embossed btn-primary">Admin Area</button></a>
+	</div>
+{% endif %}
+</div>
