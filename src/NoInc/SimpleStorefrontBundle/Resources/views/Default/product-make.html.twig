@@ -3,8 +3,10 @@
 
 	<div class="pricing1">
 	
-		<div class="top">
-		
+		{% if recipe.image is not empty %}
+			<div class="top" style="background:url('{{ asset('bundles/NoIncSimpleStorefrontBundle/images/recipe/'~recipe.image) }}')">
+		{% endif %}
+				
 			<h2 class="editContent">{{ recipe.name }}</h2>
 			
 			<p class="price "><b class="editContent">${{ recipe.price }}</b></p>
