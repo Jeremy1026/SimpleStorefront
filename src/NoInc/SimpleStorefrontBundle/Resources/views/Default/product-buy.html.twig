@@ -4,7 +4,16 @@
 	<div class="pricing1">
 	
 		{% if recipe.image is not empty %}
-			<div class="top" style="background:url('{{ asset('bundles/NoIncSimpleStorefrontBundle/images/recipe/'~recipe.image) }}')">
+			{% if recipe.name == "Lemonade" %}
+				{% image '@NoIncSimpleStorefrontBundle/Resources/public/images/recipe/lemonade.jpg' %}
+				<div class="top background-image" style="background:url('{{ asset_url }}')">
+				{% endimage %}
+			{% endif %}
+			{% if recipe.name == "Sweet Tea" %}
+				{% image '@NoIncSimpleStorefrontBundle/Resources/public/images/recipe/sweet-tea.jpg' %}
+				<div class="top background-image" style="background:url('{{ asset_url }}')">
+				{% endimage %}
+			{% endif %}
 		{% endif %}
 
 			<h2 class="editContent">{{ recipe.name }}</h2>

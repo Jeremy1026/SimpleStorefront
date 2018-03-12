@@ -1,0 +1,19 @@
+{% extends 'NoIncSimpleStorefrontBundle:Default:base_no_header.html.twig' %}
+
+{% block body %} 
+<div class="login">
+    <form action="{{ path('login') }}" method="post">
+       	<div class="input-row">
+	        <label for="username">Username:</label>
+	        <input type="text" id="username" name="username" value="{{ last_username }}" />
+		</div>      
+		<div class="input-row"> 
+	        <label for="password">Password:</label>
+	        <input type="password" id="password" name="password" />
+        </div>
+        <div class="input-row">
+        	<button type="submit" class="btn btn-embossed btn-primary">Login</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

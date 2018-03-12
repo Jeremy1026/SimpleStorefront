@@ -14042,3 +14042,22 @@ div.dark_rounded #pp_full_res .pp_inline,div.dark_square #pp_full_res .pp_inline
     max-width: 200px;
     margin: 0 auto;
 }
+
+div.top.background-image {
+    min-height: 250px;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+}
+
+div.login {
+    width: 60%;
+    margin: 0 auto;
+    text-align: center;
+    min-height: 100%;
+    padding: 50px;
+}
+
+div.login .input-row {
+    padding: 10px;
+}
